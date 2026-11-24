@@ -159,3 +159,23 @@ python3 test_inky.py   # 15 tests: pass-through anchors, fixes, hippos, scoring,
 ```
 
 MIT licensed (see `LICENSE`). Home: `wbic16/inky`, branch `exo`.
+
+## Android shell (reachable rung, 2026-11-24)
+
+`android/inky-android.apk` is a debug-signed Android build of inky: a
+minimal Chaquopy shell (Python 3.12, Chaquopy 16.1.0, AGP 8.7.3,
+Gradle 8.10.2, targetSdk 34, minSdk 26, applicationId `io.phext.inky`)
+wrapping the **unmodified** engine — `inky.py`, `protect.txt`, and
+`words-en.txt` from this repo are bundled as-is, and the shell drives
+inky through its own CLI surface (`inky.main(argv)` with `--dict`,
+`--protect`, and `--report`). One screen: a text box, a
+"Massage my typos" button, and an output area showing the corrected
+text plus inky's analysis (flagged hippos, scored candidate lines
+with tiers). The Android project sources live beside the APK under
+`android/`; to rebuild, copy `inky.py`, `protect.txt`, and
+`words-en.txt` from the repo root into `android/app/src/main/python/`
+(and `protect.txt` + `words-en.txt` into `android/app/src/main/assets/`),
+then run `gradle assembleDebug` with `ANDROID_HOME` set.
+APK: 36 MB, sha256 `1a7c35d96c8cd2cde1c396658a6fd457b8f35f500e42ce11ffbffee1e9e4eb85`.
+This is the reachable rung only — the full Kotlin keyboard port
+remains the charted moonshot.
